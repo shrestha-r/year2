@@ -1,0 +1,7 @@
+name,debt,income,married?,jobType,LifeStyle,Risk;
+Joe,Medium, High, Yes, Permanent, Frugal, Good;
+Sue, Low, Medium, Yes,Temmporary, Luxury, Good;
+John,High, High, No, Temporary, Frugal, Good;
+Cooper, Low, Low, Yes,Temmporary, Frugal, poor;
+Meera,High, High, Yes, Permanent, Frugal, Good;
+Mahi, Low, Medium, No,Temmporary, Luxury, poor;
