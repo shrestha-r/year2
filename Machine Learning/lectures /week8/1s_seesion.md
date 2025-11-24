@@ -25,4 +25,4 @@ ID3(Examples, Label, features ):
 
 
 
-<!-- Probailistic learning  for next week lecture.  -->
+<!-- Probailistic learning  for next week lecture.   -->
