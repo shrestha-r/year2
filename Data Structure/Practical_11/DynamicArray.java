@@ -9,7 +9,6 @@ public class DynamicArray{
 
     Object[] array;
     
-
     public DynamicArray(){
         array = new Object[this.capacity];
     }

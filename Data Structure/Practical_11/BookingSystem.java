@@ -1,8 +1,10 @@
 package Practical_11;
 
-import Practical_11.DynamicArray;
+import Practical_11.Concert;
 
+import java.util.ArrayList;
 
+import DataStructues.MyList;
 /*
  *     
     • Class BookingSystem:
@@ -15,13 +17,41 @@ import Practical_11.DynamicArray;
  */
 
 public class BookingSystem {
-    public static void main(String[] args) {
-        DynamicArray a = new DynamicArray();
-        a.add("Naresh");
-        a.add("Chaudhary");
-        a.add("Kumar");
+    private String venueId;
+    private String location;
+    MyList<Concert> concerts = new MyList<>();
+    int current_concert_size = concerts.size();
 
-        Concert c = new Concert(100,a,"15:00");
-        System.out.println(c);
+    public BookingSystem(String venueId, String location){
+        this.venueId = venueId;
+        this.location = location;
+        this.concerts = new MyList<>(7);
+    }
+    public  void shedule(Concert new_concert){
+
+    }
+    Boolean isUnique(Concert new_Concert){
+        for(int i =0;i<=concerts.size();i++){
+            if((concerts.get(i).compareTo(new_Concert)) == 0){
+                System.out.println("Concert Already Exist.");
+                System.out.println("AT "+ new_Concert.time);
+                return false;
+            }
+        }
+        return true;
+    }
+    public void cancel(int concertId){
+        
+    }
+    public void getConcert(int index){
+
+    }
+    public void total(){
+
+    }
+
+    @Override
+    public String toString() {
+        return super.toString();
     }
 }

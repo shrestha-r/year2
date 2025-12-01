@@ -18,29 +18,29 @@ public class Interpreter {
                 Token opt = tokens.pop();
                 Token a = tokens.pop();
                 Token b = tokens.pop();
+                if(opt.type == Type.LOGICAL && a.type == Type.BOOL && b.type == Type.BOOL){
+                    tokens.push(new Token(input_string));
+                }else if(opt.type == Type.LOGICAL && a.type == Type.BOOL && b.type == Type.BOOL){
 
-                switch (opt.type) {
-                    case LOGICAL:
-
-                        break;
-                    case COMPARISON:
-                        System.out.println("hello");
-                        break;
+                }else{
+                    System.out.println("Type Missed Match");
                 }
+
             }
         }
 
     }
-    void reduce(){
-        return rule5() | rule6();
+    Boolean reduce(){
+        return rule5() || rule6();
     }
-    String rule6() {
-        return "hello ";
-    }
+  
 
     Boolean rule5() {
 
         return false;
+    }
+      Boolean rule6() {
+        return true;
     }
 
     public static void main(String[] args) {

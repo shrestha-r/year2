@@ -8,6 +8,8 @@ package Practical_11;
  */
 
 import Practical_11.DynamicArray;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 
 
@@ -18,21 +20,26 @@ import Practical_11.DynamicArray;
         ◦ Allows a total ordering of concerts (i.e. concerts are Comparable based on concert time)
  */
 
-public class Concert {
+public class Concert implements Comparable<Concert>{
     int concertId;
     DynamicArray artists = new DynamicArray(); 
-    String time;
+    LocalTime time;
     public Concert(){
 
     }
-    public Concert(int id, DynamicArray a, String t){
+    public Concert(int id, DynamicArray a, int hour, int minute){
             this.concertId= id;
             this.artists = a;
+            this.time =  LocalTime.of(hour, minute);
+    }
 
+    @Override
+    public int compareTo(Concert other) {
+        return this.time.compareTo(other.time);
     }
 
     public String toString() {
-        String description = " Concert " + String.valueOf(concertId);
+        String description = "Concert#" + String.valueOf(concertId);
         return description;
     }
 }
