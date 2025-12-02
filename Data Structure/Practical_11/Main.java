@@ -1,6 +1,6 @@
 package Practical_11;
 
-import Practical_11.DynamicArray;
+import DataStructues.DynamicArray;
 public class Main {
     public static void main(String[] args) {
         DynamicArray array = new DynamicArray();

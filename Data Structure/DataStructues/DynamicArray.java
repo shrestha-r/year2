@@ -1,4 +1,4 @@
-package Practical_11;
+package DataStructues;
 
 import java.lang.reflect.Array;
 
