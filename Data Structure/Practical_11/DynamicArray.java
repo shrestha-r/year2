@@ -1,6 +1,4 @@
-package DataStructues;
-
-import java.lang.reflect.Array;
+package Practical_11;
 
 public class DynamicArray{
     int size = 0;

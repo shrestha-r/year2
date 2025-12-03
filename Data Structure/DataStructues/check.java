@@ -9,6 +9,7 @@ public class check {
         l.add("2");
         l.add("1");
 
+        // System.out.println();
         System.out.println(l);
         System.out.println(l.size());
         l.add("0", 3);

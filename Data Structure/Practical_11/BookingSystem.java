@@ -1,9 +1,6 @@
 package Practical_11;
 
 import Practical_11.Concert;
-
-import java.util.ArrayList;
-
 import DataStructues.MyList;
 /*
  *     
@@ -19,35 +16,38 @@ import DataStructues.MyList;
 public class BookingSystem {
     private String venueId;
     private String location;
-    MyList<Concert> concerts = new MyList<>();
-    int current_concert_size = concerts.size();
-
+    MyList<Concert> concerts ;
+    
     public BookingSystem(String venueId, String location){
         this.venueId = venueId;
         this.location = location;
         this.concerts = new MyList<>(7);
     }
-    public  void shedule(Concert new_concert){
-
-    }
-    Boolean isUnique(Concert new_Concert){
+    public  Boolean shedule(Concert new_concert){
         for(int i =0;i<=concerts.size();i++){
-            if((concerts.get(i).compareTo(new_Concert)) == 0){
-                System.out.println("Concert Already Exist.");
-                System.out.println("AT "+ new_Concert.time);
+            if(concerts.get(i).getConcertId().equals(new_concert.getConcertId())){
                 return false;
             }
         }
+        if (concerts.size() ==0) concerts.append(new_concert);
+        MyList<Concert> temp = new MyList<>(concerts.size()+1);
+        for(int i =0;i<=concerts.size();i++){
+            if(concerts.get(i).compareTo(new_concert)<0){
+                temp.append(new_concert);
+            }
+            temp.append(concerts.get(i));
+        }
+        concerts = temp;
         return true;
     }
     public void cancel(int concertId){
-        
+            concerts.remove(concertId);
     }
-    public void getConcert(int index){
-
+    public Concert getConcert(int index){
+        return concerts.get(index);
     }
-    public void total(){
-
+    public int total(){
+        return concerts.size();
     }
 
     @Override

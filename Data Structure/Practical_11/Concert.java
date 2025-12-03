@@ -1,9 +1,14 @@
 package Practical_11;
 
+/**
+ * Class Concert implements Comparable 
+ *
+ * @author Rahul Shrestha
+ * @version November 2025
+ */
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-
-import DataStructues.DynamicArray;
 
 public class Concert implements Comparable<Concert>{
     private final String concertId;

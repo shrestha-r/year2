@@ -1,8 +1,9 @@
 package DataStructues;
 
 import java.lang.StringBuilder;
+import java.util.Iterator;
 
-public class MyList<E> {
+public class MyList<E> {//implements Iterable{
     private int capacity = 10; // actual size of list, keeping size 10 by default
     private int size = 0; // number of element in the list, initial having 0 element
     private E[] list; // list of element of generic data type
@@ -26,7 +27,7 @@ public class MyList<E> {
         return size == 0;
     }
 
-    public void add(E element) { // adding element at the end of list
+    public void append(E element) { // adding element at the end of list
         if (size >= capacity) {
             grow();
         }
@@ -77,7 +78,7 @@ public class MyList<E> {
     }
 
     private void checkIndex(int index) {
-        if (index < 0 || index >= size)
+        if (index < 0 || index > size)
             throw new IndexOutOfBoundsException("Index: " + index + ", Size: " + size);
     }
 
@@ -114,5 +115,12 @@ public class MyList<E> {
         stringList.append("]");
         return stringList.toString();
     }
+
+
+    // @Override
+    // public Iterator iterator() {
+    //     // TODO Auto-generated method stub
+    //     return ;
+    // }
 
 }
