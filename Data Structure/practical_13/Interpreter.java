@@ -3,9 +3,6 @@ package practical_13;
 import java.util.Stack;
 import practical_13.Token;
 
-enum Type {
-    NUM, BOOL, COMPARISON, LOGICAL
-}
 
 public class Interpreter {
     public Stack<Token> tokens = new Stack<>();
@@ -14,30 +11,27 @@ public class Interpreter {
         String[] parts = input_string.trim().split("\\s+");
         for (String part : parts) {
             tokens.push(new Token(part));
-            if (tokens.size() == 3) {
-                Token opt = tokens.pop();
-                Token a = tokens.pop();
-                Token b = tokens.pop();
-                if(opt.type == Type.LOGICAL && a.type == Type.BOOL && b.type == Type.BOOL){
-                    tokens.push(new Token(input_string));
-                }else if(opt.type == Type.LOGICAL && a.type == Type.BOOL && b.type == Type.BOOL){
-
-                }else{
-                    System.out.println("Type Missed Match");
-                }
-
+            if(tokens.size() > 3){
+                rule5();
+                rule6();
             }
         }
 
     }
-    Boolean reduce(){
-        return rule5() || rule6();
-    }
-  
 
     Boolean rule5() {
-
+        int n = tokens.size();
+        Token operator = tokens.get(n-1);;
+        Token operand__a = tokens.get(n-2);;
+        Token operand_b = tokens.get(n-3);;
+        boolean result = false;
+        if(operator.type == Type.COMPARISON && operand__a.type == Type.NUM && operand_b.type == Type.NUM){
+            double left = (Double)operand__a.value;
+            double right = (Double)operand_b.value;
+            result = operator.value.equals('>')?left > right: left < right;
+        }
         return false;
+
     }
       Boolean rule6() {
         return true;

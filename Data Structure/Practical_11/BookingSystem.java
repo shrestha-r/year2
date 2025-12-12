@@ -16,12 +16,14 @@ import DataStructues.MyList;
 public class BookingSystem {
     private String venueId;
     private String location;
-    MyList<Concert> concerts ;
+    // MyList<Concert> concerts ;
+
+    Concert[] concerts[] 
     
     public BookingSystem(String venueId, String location){
         this.venueId = venueId;
         this.location = location;
-        this.concerts = new MyList<>(7);
+        this.concerts = new Concert[7];
     }
     public  Boolean shedule(Concert new_concert){
         for(int i =0;i<=concerts.size();i++){
