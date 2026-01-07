@@ -18,7 +18,7 @@ public class BookingSystem {
     private String location;
     // MyList<Concert> concerts ;
 
-    Concert[] concerts[] 
+    Concert[] concerts[];
     
     public BookingSystem(String venueId, String location){
         this.venueId = venueId;
