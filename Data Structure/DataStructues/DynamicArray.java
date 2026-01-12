@@ -1,4 +1,4 @@
-package Practical_11;
+package DataStructues;
 
 public class DynamicArray{
     int size = 0;

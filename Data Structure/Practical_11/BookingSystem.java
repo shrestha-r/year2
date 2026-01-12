@@ -1,59 +1,98 @@
 package Practical_11;
 
-import Practical_11.Concert;
-import DataStructues.MyList;
-/*
- *     
-    • Class BookingSystem:
-        ◦ Stores venue id, location, a concert list (an array of scheduled concerts with default capacity for 7 concerts), and the current size of the concert list
-        ◦ Allows unique concerts to be scheduled (while maintaining the concert list in ascending order based on concert time)
-        ◦ Allows concerts to be cancelled (the concert list must not have gaps that “break” the sequence of scheduled concerts)
-        ◦ Allows indexed access to concert list
-        ◦ Creates a human friendly representation of the class (i.e. toString(), improve print outs by ignoring empty elements within the concert list)
-        ◦ Within comments, calculate the Time Complexity Functions of your implementation and highlight parts leading to sub-optimal complexity
- */
-
 public class BookingSystem {
     private String venueId;
     private String location;
-    // MyList<Concert> concerts ;
+    private Concert[] concerts;
+    private int size;
 
-    Concert[] concerts[];
-    
-    public BookingSystem(String venueId, String location){
+    public BookingSystem(String venueId, String location) {
         this.venueId = venueId;
         this.location = location;
-        this.concerts = new Concert[7];
+        this.concerts = new Concert[7]; // fixed size array
+        this.size = 0; // number of stored concets
     }
-    public  Boolean shedule(Concert new_concert){
-        for(int i =0;i<=concerts.size();i++){
-            if(concerts.get(i).getConcertId().equals(new_concert.getConcertId())){
+
+    public boolean schedule(Concert newConcert) {
+
+        // O(1): capacity check
+        if (size == concerts.length) {
+            return false;
+        }
+
+        // O(n): duplicate check
+        for (int i = 0; i < size; i++) {
+            if (concerts[i].getConcertId().equals(newConcert.getConcertId())) {
                 return false;
             }
         }
-        if (concerts.size() ==0) concerts.append(new_concert);
-        MyList<Concert> temp = new MyList<>(concerts.size()+1);
-        for(int i =0;i<=concerts.size();i++){
-            if(concerts.get(i).compareTo(new_concert)<0){
-                temp.append(new_concert);
-            }
-            temp.append(concerts.get(i));
+
+        // O(n): find correct sorted position
+        int index = 0;
+        while (index < size && concerts[index].compareTo(newConcert) < 0) {
+            index++;
         }
-        concerts = temp;
+
+        // O(n): shift elements right
+        for (int i = size; i > index; i--) {
+            concerts[i] = concerts[i - 1];
+        }
+
+        // O(1): insert
+        concerts[index] = newConcert;
+        size++;
+
         return true;
     }
-    public void cancel(int concertId){
-            concerts.remove(concertId);
+
+    public boolean cancel(String concertId) {
+
+        int index = -1;
+
+        // O(n): search
+        for (int i = 0; i < size; i++) {
+            if (concerts[i].getConcertId().equals(concertId)) {
+                index = i;
+                break;
+            }
+        }
+
+        if (index == -1) {
+            return false;
+        }
+
+        // O(n): shift left
+        for (int i = index; i < size - 1; i++) {
+            concerts[i] = concerts[i + 1];
+        }
+
+        concerts[size - 1] = null;
+        size--;
+
+        return true;
     }
-    public Concert getConcert(int index){
-        return concerts.get(index);
+
+    public Concert getConcert(int index) {
+        if (index < 0 || index >= size) {
+            throw new IndexOutOfBoundsException();
+        }
+        return concerts[index];
     }
-    public int total(){
-        return concerts.size();
+
+    public int total() {
+        return size;
     }
 
     @Override
     public String toString() {
-        return super.toString();
+        StringBuilder sb = new StringBuilder();
+        sb.append("Venue: ").append(venueId)
+                .append(" | Location: ").append(location).append("\n");
+
+        for (int i = 0; i < size; i++) {
+            sb.append(concerts[i]).append("\n");
+        }
+        return sb.toString();
     }
+
 }
